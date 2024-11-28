@@ -15,13 +15,13 @@ import {
 import type { FilterType } from '@/types'
 
 interface CategoryFiltersProps {
-  categories: string[]
+  categories?: string[] // Make categories optional
   subcategories: string[]
   initialFilters: FilterType
 }
 
 export default function CategoryFilters({ 
-  categories, 
+  categories, // Optional, in case you want to use it later
   subcategories, 
   initialFilters 
 }: CategoryFiltersProps) {
@@ -153,4 +153,3 @@ export default function CategoryFilters({
     </div>
   )
 }
-

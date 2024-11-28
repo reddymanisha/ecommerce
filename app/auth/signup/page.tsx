@@ -10,6 +10,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert'
 import Link from 'next/link'
 
 export default function SignUp() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -97,4 +98,3 @@ export default function SignUp() {
     </div>
   )
 }
-

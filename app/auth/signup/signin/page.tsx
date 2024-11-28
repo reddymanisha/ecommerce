@@ -12,6 +12,7 @@ import Link from 'next/link'
 export default function SignIn() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
 
@@ -67,10 +68,9 @@ export default function SignIn() {
           <Button type="submit" className="w-full">Sign In</Button>
         </form>
         <p className="mt-4 text-center">
-          Don't have an account? <Link href="/auth/signup" className="text-blue-500 hover:underline">Sign Up</Link>
+          Don&apos;t have an account? <Link href="/auth/signup" className="text-blue-500 hover:underline">Sign Up</Link>
         </p>
       </div>
     </div>
   )
 }
-

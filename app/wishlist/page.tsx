@@ -2,46 +2,57 @@
 
 import { useWishlist } from '@/contexts/WishlistContext'
 import { useCart } from '@/contexts/CartContext'
-import { Button } from '@/components/ui/button'
-import type { CartItem } from '@/types'
+import Image from 'next/image'
 
-export default function WishlistPage() {
+export default function Wishlist() {
   const { wishlist, removeFromWishlist, clearWishlist } = useWishlist()
-  const { addToCart } = useCart()
-
-  const handleAddToCart = (item: CartItem) => {
-    addToCart({ ...item, quantity: 1 })
-  }
+  const { addToCart, isInCart } = useCart()
 
   return (
-    <div>
-      <h1 className="text-2xl font-semibold mb-4">Your Wishlist</h1>
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-6">Your Wishlist</h1>
       {wishlist.length === 0 ? (
         <p>Your wishlist is empty.</p>
       ) : (
         <>
-          <ul className="space-y-4">
+          <div className="grid gap-4">
             {wishlist.map((item) => (
-              <li key={item.id} className="flex items-center justify-between border-b pb-2">
-                <div>
-                  <h3 className="font-semibold">{item.name}</h3>
-                  <p className="text-sm text-gray-600">${item.price.toFixed(2)}</p>
+              <div key={item.id} className="flex items-center justify-between border-b pb-4">
+                <div className="flex items-center">
+                  <Image src={item.image} alt={item.name} width={80} height={80} className="mr-4" />
+                  <div>
+                    <h2 className="font-semibold">{item.name}</h2>
+                    <p className="text-gray-600">${item.price.toFixed(2)}</p>
+                  </div>
                 </div>
-                <div className="space-x-2">
-                  <Button onClick={() => handleAddToCart({ ...item, quantity: 1 })}>
-                    Add to Cart
-                  </Button>
-                  <Button variant="outline" onClick={() => removeFromWishlist(item.id)}>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => removeFromWishlist(item.id)}
+                    className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
                     Remove
-                  </Button>
+                  </button>
+                  <button
+                    onClick={() => addToCart(item)}
+                    className={`font-bold py-2 px-4 rounded ${
+                      isInCart(item.id)
+                        ? 'bg-gray-300 text-gray-600'
+                        : 'bg-blue-500 hover:bg-blue-600 text-white'
+                    }`}
+                    disabled={isInCart(item.id)}
+                  >
+                    {isInCart(item.id) ? 'In Cart' : 'Add to Cart'}
+                  </button>
                 </div>
-              </li>
+              </div>
             ))}
-          </ul>
-          <div className="mt-4">
-            <Button onClick={clearWishlist} variant="outline">
+          </div>
+          <div className="mt-8">
+            <button
+              onClick={clearWishlist}
+              className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+            >
               Clear Wishlist
-            </Button>
+            </button>
           </div>
         </>
       )}

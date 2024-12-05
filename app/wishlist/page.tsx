@@ -17,7 +17,7 @@ export default function Wishlist() {
         <>
           <div className="grid gap-4">
             {wishlist.map((item) => (
-              <div key={item.id} className="flex items-center justify-between border-b pb-4">
+              <div key={item.id} className="flex items-center justify-between border-b pb-4 mb-4">
                 <div className="flex items-center">
                   <Image src={item.image} alt={item.name} width={80} height={80} className="mr-4" />
                   <div>
@@ -25,22 +25,24 @@ export default function Wishlist() {
                     <p className="text-gray-600">${item.price.toFixed(2)}</p>
                   </div>
                 </div>
-                <div className="flex space-x-2">
-                  <button
-                    onClick={() => removeFromWishlist(item.id)}
-                    className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
-                    Remove
-                  </button>
+                <div className="flex items-center space-x-2">
                   <button
                     onClick={() => addToCart(item)}
                     className={`font-bold py-2 px-4 rounded ${
                       isInCart(item.id)
                         ? 'bg-gray-300 text-gray-600'
-                        : 'bg-blue-500 hover:bg-blue-600 text-white'
+                        : 'bg-indigo-600 hover:bg-indigo-700 text-white'
                     }`}
                     disabled={isInCart(item.id)}
                   >
                     {isInCart(item.id) ? 'In Cart' : 'Add to Cart'}
+                  </button>
+                  <button
+                    onClick={() => removeFromWishlist(item.id)}
+                    className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-3 rounded-full text-sm"
+                    aria-label="Remove from wishlist"
+                  >
+                    ×
                   </button>
                 </div>
               </div>

@@ -49,19 +49,19 @@ export default function ProductCard({ product }: { product: Product }) {
       <div className="mt-auto flex justify-between">
         <button
           onClick={handleCartAction}
-          className={`font-bold py-2 px-4 rounded ${
+          className={`font-bold py-2 px-4 rounded transition-colors duration-300 ${
             isInCart(product.id)
               ? 'bg-red-500 hover:bg-red-600 text-white'
-              : 'bg-blue-500 hover:bg-blue-600 text-white'
+              : 'bg-indigo-600 hover:bg-indigo-700 text-white'
           }`}
         >
           {isInCart(product.id) ? 'Remove from Cart' : 'Add to Cart'}
         </button>
         <button
           onClick={handleWishlistAction}
-          className={`font-bold py-2 px-4 rounded ${
+          className={`font-bold py-2 px-4 rounded transition-colors duration-300 ${
             isInWishlist(product.id)
-              ? 'bg-yellow-500 hover:bg-yellow-600 text-white'
+              ? 'bg-pink-500 hover:bg-pink-600 text-white'
               : 'bg-gray-200 hover:bg-gray-300 text-gray-800'
           }`}
         >

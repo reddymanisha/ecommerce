@@ -2,6 +2,7 @@
 
 import { useCart } from '@/contexts/CartContext'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Cart() {
   const { cart, removeFromCart, clearCart } = useCart()
@@ -43,9 +44,9 @@ export default function Cart() {
               >
                 Clear Cart
               </button>
-              <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                Checkout
-              </button>
+              <Link href="/checkout" className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+                Proceed to Checkout
+              </Link>
             </div>
           </div>
         </>

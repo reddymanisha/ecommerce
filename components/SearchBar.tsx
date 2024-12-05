@@ -35,17 +35,17 @@ export default function SearchBar() {
   }, [isFilterOpen])
 
   return (
-    <form onSubmit={handleSearch} className="flex items-center">
+    <form onSubmit={handleSearch} className="flex items-center w-full md:w-auto">
       <input
         type="text"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder="Search products..."
-        className="px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
+        className="px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-800 w-full md:w-64"
       />
       <button
         type="submit"
-        className="px-4 py-2 bg-blue-500 text-white rounded-r-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+        className="px-4 py-2 bg-indigo-600 text-white rounded-r-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
       >
         Search
       </button>
@@ -53,7 +53,7 @@ export default function SearchBar() {
         <button
           type="button"
           onClick={() => setIsFilterOpen(!isFilterOpen)}
-          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex items-center"
+          className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 flex items-center"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clipRule="evenodd" />
@@ -64,9 +64,9 @@ export default function SearchBar() {
           )}
         </button>
         {isFilterOpen && (
-          <div className="absolute right-0 mt-2 w-64 bg-gray-100 rounded-md shadow-lg z-10 p-4">
+          <div className="absolute right-0 mt-2 w-64 bg-white rounded-md shadow-lg z-10 p-4">
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-800 mb-1">Price Range</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Price Range</label>
               <div className="flex items-center">
                 <input
                   type="number"
@@ -85,7 +85,7 @@ export default function SearchBar() {
               </div>
             </div>
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-800 mb-1">Category</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
@@ -104,14 +104,14 @@ export default function SearchBar() {
                   setPriceRange([0, Infinity])
                   setSelectedCategory('All Categories')
                 }}
-                className="px-3 py-1 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50"
+                className="px-3 py-1 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50"
               >
                 Clear
               </button>
               <button
                 type="button"
                 onClick={applyFilters}
-                className="px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                className="px-3 py-1 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
               >
                 Apply
               </button>

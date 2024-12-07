@@ -6,6 +6,8 @@ interface User {
   id: number
   name: string
   email: string
+  address?: string
+  phone?: string
 }
 
 interface AuthContextType {
@@ -13,6 +15,7 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<void>
   logout: () => void
   register: (name: string, email: string, password: string) => Promise<void>
+  updateUser: (userData: Partial<User>) => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -47,8 +50,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem('user', JSON.stringify(mockUser))
   }
 
+  const updateUser = async (userData: Partial<User>) => {
+    if (user) {
+      const updatedUser = { ...user, ...userData }
+      setUser(updatedUser)
+      localStorage.setItem('user', JSON.stringify(updatedUser))
+    }
+  }
+
   return (
-    <AuthContext.Provider value={{ user, login, logout, register }}>
+    <AuthContext.Provider value={{ user, login, logout, register, updateUser }}>
       {children}
     </AuthContext.Provider>
   )

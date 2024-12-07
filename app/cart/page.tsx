@@ -28,9 +28,10 @@ export default function Cart() {
                 </div>
                 <button
                   onClick={() => removeFromCart(item.id)}
-                  className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                  className="bg-white hover:bg-gray-100 text-black border border-black font-bold py-2 px-3 rounded-full transition-colors duration-300"
+                  aria-label="Remove from cart"
                 >
-                  Remove
+                  ×
                 </button>
               </div>
             ))}
@@ -40,11 +41,11 @@ export default function Cart() {
             <div className="mt-4 flex space-x-4">
               <button
                 onClick={clearCart}
-                className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                className="bg-white hover:bg-gray-100 text-black border border-black font-bold py-2 px-4 rounded transition-colors duration-300"
               >
                 Clear Cart
               </button>
-              <Link href="/checkout" className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+              <Link href="/checkout" className="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded transition-colors duration-300">
                 Proceed to Checkout
               </Link>
             </div>

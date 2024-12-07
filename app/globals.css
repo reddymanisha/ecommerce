@@ -3,62 +3,39 @@
 @tailwind utilities;
 
 :root {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+.dark {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
 }
 
 body {
-  font-family: var(--font-sans);
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
 }
 
 @layer base {
-  html {
-    @apply text-base;
-  }
-
-  @screen sm {
-    html {
-      @apply text-sm;
-    }
-  }
-
-  @screen lg {
-    html {
-      @apply text-base;
-    }
+  body {
+    @apply bg-gradient-to-b from-indigo-50 to-white text-gray-900 dark:from-gray-900 dark:to-gray-800 dark:text-white;
   }
 }
 
 @layer components {
-  .container {
-    @apply px-4 mx-auto;
-    max-width: 100%;
+  .btn-primary {
+    @apply bg-indigo-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors duration-300 dark:bg-indigo-500 dark:hover:bg-indigo-600;
   }
-
-  @screen sm {
-    .container {
-      max-width: 640px;
-    }
-  }
-
-  @screen md {
-    .container {
-      max-width: 768px;
-    }
-  }
-
-  @screen lg {
-    .container {
-      max-width: 1024px;
-    }
-  }
-
-  @screen xl {
-    .container {
-      max-width: 1280px;
-    }
+  .btn-secondary {
+    @apply bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-md hover:bg-gray-300 transition-colors duration-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600;
   }
 }
-
-/* Add any additional global styles here */
 

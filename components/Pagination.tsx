@@ -21,7 +21,7 @@ interface PaginationProps {
                 onClick={() => paginate(number)}
                 className={`px-3 py-1 rounded ${
                   currentPage === number
-                    ? 'bg-blue-500 text-white'
+                    ? 'bg-black text-white'
                     : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                 }`}
               >

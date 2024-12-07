@@ -28,10 +28,10 @@ export default function Wishlist() {
                 <div className="flex items-center space-x-2">
                   <button
                     onClick={() => addToCart(item)}
-                    className={`font-bold py-2 px-4 rounded ${
+                    className={`font-bold py-2 px-4 rounded transition-colors duration-300 ${
                       isInCart(item.id)
-                        ? 'bg-gray-300 text-gray-600'
-                        : 'bg-indigo-600 hover:bg-indigo-700 text-white'
+                        ? 'bg-gray-300 text-black'
+                        : 'bg-black text-white hover:bg-gray-800'
                     }`}
                     disabled={isInCart(item.id)}
                   >
@@ -39,7 +39,7 @@ export default function Wishlist() {
                   </button>
                   <button
                     onClick={() => removeFromWishlist(item.id)}
-                    className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-3 rounded-full text-sm"
+                    className="bg-white hover:bg-gray-100 text-black border border-black font-bold py-2 px-3 rounded-full text-sm transition-colors duration-300"
                     aria-label="Remove from wishlist"
                   >
                     ×
@@ -51,7 +51,7 @@ export default function Wishlist() {
           <div className="mt-8">
             <button
               onClick={clearWishlist}
-              className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+              className="bg-white hover:bg-gray-100 text-black border border-black font-bold py-2 px-4 rounded transition-colors duration-300"
             >
               Clear Wishlist
             </button>

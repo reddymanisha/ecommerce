@@ -2,10 +2,14 @@
 
 import { useState } from 'react'
 import { useCart } from '@/contexts/CartContext'
+import { useAuth } from '@/contexts/AuthContext'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 export default function Checkout() {
   const { cart, clearCart } = useCart()
+  const { user } = useAuth()
+  const router = useRouter()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -31,11 +35,44 @@ export default function Checkout() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically send the order to your backend
-    console.log('Order submitted:', { ...formData, cart, total, paymentMethod })
+    if (!user) {
+      alert('Please sign in to place an order.')
+      router.push('/signin')
+      return
+    }
+    // Create the order object
+    const order = {
+      id: Date.now().toString(),
+      userId: user.id,
+      date: new Date().toISOString(),
+      total: total,
+      status: 'Processing',
+      items: cart.map(item => ({
+        id: item.id,
+        name: item.name,
+        quantity: 1,
+        price: item.price
+      })),
+      shippingAddress: {
+        name: formData.name,
+        address: formData.address,
+        city: formData.city,
+        country: formData.country,
+        zipCode: formData.zipCode
+      },
+      paymentMethod: paymentMethod
+    }
+
+    // Save the order to local storage
+    const existingOrders = JSON.parse(localStorage.getItem('orders') || '[]')
+    const updatedOrders = [...existingOrders, order]
+    localStorage.setItem('orders', JSON.stringify(updatedOrders))
+
+    // Clear the cart
     clearCart()
-    // Redirect to a thank you page or show a success message
-    alert('Thank you for your order!')
+
+    // Redirect to the orders page
+    router.push('/orders')
   }
 
   return (
@@ -69,7 +106,7 @@ export default function Checkout() {
                 value={formData.name}
                 onChange={handleInputChange}
                 required
-                className="w-full px-3 py-2 border rounded"
+                className="w-full px-3 py-2 border rounded text-black dark:text-black dark:bg-white"
               />
             </div>
             <div>
@@ -81,7 +118,7 @@ export default function Checkout() {
                 value={formData.email}
                 onChange={handleInputChange}
                 required
-                className="w-full px-3 py-2 border rounded"
+                className="w-full px-3 py-2 border rounded text-black dark:text-black dark:bg-white"
               />
             </div>
             <div>
@@ -93,7 +130,7 @@ export default function Checkout() {
                 value={formData.address}
                 onChange={handleInputChange}
                 required
-                className="w-full px-3 py-2 border rounded"
+                className="w-full px-3 py-2 border rounded text-black dark:text-black dark:bg-white"
               />
             </div>
             <div>
@@ -105,7 +142,7 @@ export default function Checkout() {
                 value={formData.city}
                 onChange={handleInputChange}
                 required
-                className="w-full px-3 py-2 border rounded"
+                className="w-full px-3 py-2 border rounded text-black dark:text-black dark:bg-white"
               />
             </div>
             <div>
@@ -117,7 +154,7 @@ export default function Checkout() {
                 value={formData.country}
                 onChange={handleInputChange}
                 required
-                className="w-full px-3 py-2 border rounded"
+                className="w-full px-3 py-2 border rounded text-black dark:text-black dark:bg-white"
               />
             </div>
             <div>
@@ -129,7 +166,7 @@ export default function Checkout() {
                 value={formData.zipCode}
                 onChange={handleInputChange}
                 required
-                className="w-full px-3 py-2 border rounded"
+                className="w-full px-3 py-2 border rounded text-black dark:text-black dark:bg-white"
               />
             </div>
             <div className="mb-4">
@@ -139,7 +176,7 @@ export default function Checkout() {
                 name="paymentMethod"
                 value={paymentMethod}
                 onChange={(e) => setPaymentMethod(e.target.value)}
-                className="w-full px-3 py-2 border rounded"
+                className="w-full px-3 py-2 border rounded text-black dark:text-black dark:bg-white"
               >
                 <option value="credit-card">Credit Card</option>
                 <option value="paypal">PayPal</option>
@@ -157,7 +194,7 @@ export default function Checkout() {
                     value={formData.cardNumber}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 border rounded"
+                    className="w-full px-3 py-2 border rounded text-black dark:text-black dark:bg-white"
                     placeholder="1234 5678 9012 3456"
                   />
                 </div>
@@ -171,7 +208,7 @@ export default function Checkout() {
                       value={formData.cardExpiry}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-3 py-2 border rounded"
+                      className="w-full px-3 py-2 border rounded text-black dark:text-black dark:bg-white"
                       placeholder="MM/YY"
                     />
                   </div>
@@ -184,7 +221,7 @@ export default function Checkout() {
                       value={formData.cardCVC}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-3 py-2 border rounded"
+                      className="w-full px-3 py-2 border rounded text-black dark:text-black dark:bg-white"
                       placeholder="123"
                     />
                   </div>

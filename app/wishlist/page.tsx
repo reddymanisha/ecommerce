@@ -27,7 +27,7 @@ export default function Wishlist() {
                 </div>
                 <div className="flex items-center space-x-2">
                   <button
-                    onClick={() => addToCart(item)}
+                    onClick={() => addToCart(item, 1)}
                     className={`font-bold py-2 px-4 rounded transition-colors duration-300 ${
                       isInCart(item.id)
                         ? 'bg-gray-300 text-black'

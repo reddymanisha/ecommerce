@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Filter } from 'lucide-react'
+import { Search } from 'lucide-react'
 
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState('')
@@ -36,20 +37,19 @@ export default function SearchBar() {
   }, [isFilterOpen])
 
   return (
-    <form onSubmit={handleSearch} className="flex items-center">
-      <input
-        type="text"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        placeholder="Search products..."
-        className="px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
-      />
-      <button
-        type="submit"
-        className="px-4 py-2 bg-blue-500 text-white rounded-r-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-      >
-        Search
-      </button>
+    <form onSubmit={handleSearch} className="flex items-center space-x-2">
+      <div className="relative flex-grow">
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Search products..."
+          className="w-full px-4 py-2 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
+        />
+        <button type="submit" className="absolute inset-y-0 left-0 pl-3 flex items-center">
+          <Search className="w-5 h-5 text-gray-400" />
+        </button>
+      </div>
       <div className="relative ml-2 filter-dropdown">
         <button
           type="button"

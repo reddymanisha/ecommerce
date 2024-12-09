@@ -15,7 +15,8 @@ export default function ProductCard({ product }: { product: Product }) {
     if (isInCart(product.id)) {
       removeFromCart(product.id)
     } else {
-      addToCart(product)
+      // Adjusted to pass the correct arguments to addToCart
+      addToCart(product, 1) // Assuming quantity is 1 by default
     }
   }
 
@@ -73,4 +74,3 @@ export default function ProductCard({ product }: { product: Product }) {
     </div>
   )
 }
-

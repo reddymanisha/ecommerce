@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="container mx-auto px-4 py-8">
       <Carousel />
-      <h1 className="text-4xl font-bold mb-6 mt-12 text-center text-indigo-800">Welcome to Our E-commerce Store</h1>
+      <h1 className="text-4xl font-bold mb-6 mt-12 text-center text-indigo-800">Welcome to VibeValthu</h1>
       <p className="text-xl mb-8 text-center text-gray-600">Discover amazing products for everyone in our collection!</p>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

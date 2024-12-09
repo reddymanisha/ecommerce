@@ -35,7 +35,7 @@ export default function SignUp() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 py-2 border rounded text-black dark:text-white bg-white dark:bg-gray-800"
           />
         </div>
         <div className="mb-4">
@@ -46,7 +46,7 @@ export default function SignUp() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 py-2 border rounded text-black dark:text-white bg-white dark:bg-gray-800"
           />
         </div>
         <div className="mb-4">
@@ -57,7 +57,7 @@ export default function SignUp() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 py-2 border rounded text-black dark:text-white bg-white dark:bg-gray-800"
           />
         </div>
         <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">

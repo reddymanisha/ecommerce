@@ -59,7 +59,7 @@ export default function OrdersPage() {
       <h1 className="text-3xl font-bold mb-6 dark:text-white">Your Orders</h1>
       {orders.length === 0 ? (
         <div className="text-center dark:text-white">
-          <p className="mb-4">You haven't placed any orders yet.</p>
+          <p className="mb-4">You haven&apos;t placed any orders yet.</p>
           <Link href="/products" className="bg-indigo-600 text-white font-bold py-2 px-4 rounded hover:bg-indigo-700 transition-colors duration-300 dark:bg-indigo-500 dark:hover:bg-indigo-600">
             Start Shopping
           </Link>

@@ -4,6 +4,7 @@ import { useCart } from '@/contexts/CartContext'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Plus, Minus } from 'lucide-react'
+import { Button } from "@/components/ui/button"
 
 export default function Cart() {
   const { cart, removeFromCart, clearCart, updateCartItemQuantity } = useCart()
@@ -17,58 +18,72 @@ export default function Cart() {
         <p className="dark:text-white">Your cart is empty.</p>
       ) : (
         <>
-          <div className="grid gap-4">
+          <div className="grid gap-8">
             {cart.map((item) => (
-              <div key={item.id} className="flex items-center justify-between border-b pb-4 dark:border-gray-700">
-                <div className="flex items-center">
-                  <Image src={item.image} alt={item.name} width={80} height={80} className="mr-4" />
-                  <div>
-                    <h2 className="font-semibold dark:text-white">{item.name}</h2>
-                    <p className="text-gray-600 dark:text-gray-300">${item.price.toFixed(2)}</p>
-                  </div>
-                </div>
-                <div className="flex items-center">
-                  <button 
-                    onClick={() => updateCartItemQuantity(item.id, item.quantity - 1)}
-                    className="bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white p-2 rounded-l"
-                  >
-                    <Minus size={20} />
-                  </button>
-                  <input 
-                    type="number" 
-                    value={item.quantity}
-                    onChange={(e) => updateCartItemQuantity(item.id, parseInt(e.target.value))}
-                    className="w-16 text-center p-2 border-t border-b text-black dark:text-black dark:bg-white"
+              <div key={item.id} className="border rounded-lg p-6 dark:border-gray-700 flex items-center">
+                <div className="relative w-64 h-64 mr-6">
+                  <Image 
+                    src={item.image} 
+                    alt={item.name} 
+                    layout="fill" 
+                    objectFit="cover"
+                    className="rounded-lg"
                   />
-                  <button 
-                    onClick={() => updateCartItemQuantity(item.id, item.quantity + 1)}
-                    className="bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white p-2 rounded-r"
-                  >
-                    <Plus size={20} />
-                  </button>
-                  <button
-                    onClick={() => removeFromCart(item.id)}
-                    className="ml-4 bg-white hover:bg-gray-100 text-black border border-black font-bold py-2 px-3 rounded-full transition-colors duration-300 dark:bg-gray-800 dark:text-white dark:border-white dark:hover:bg-gray-700"
-                    aria-label="Remove from cart"
-                  >
-                    ×
-                  </button>
+                </div>
+                <div className="flex-grow">
+                  <h2 className="font-semibold text-xl mb-2 dark:text-white">{item.name}</h2>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">${item.price.toFixed(2)}</p>
+                  <div className="flex items-center gap-4">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => updateCartItemQuantity(item.id, item.quantity - 1)}
+                      className="rounded-full dark:bg-gray-700 dark:text-white"
+                    >
+                      <Minus className="h-4 w-4" />
+                    </Button>
+                    <input 
+                      type="number" 
+                      value={item.quantity}
+                      onChange={(e) => updateCartItemQuantity(item.id, parseInt(e.target.value))}
+                      className="w-16 text-center p-2 border rounded-md text-black dark:text-white dark:bg-gray-800"
+                      min="1"
+                    />
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => updateCartItemQuantity(item.id, item.quantity + 1)}
+                      className="rounded-full dark:bg-gray-700 dark:text-white"
+                    >
+                      <Plus className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="destructive"
+                      size="icon"
+                      onClick={() => removeFromCart(item.id)}
+                      className="rounded-full"
+                    >
+                      ×
+                    </Button>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
-          <div className="mt-8">
-            <p className="text-xl font-bold dark:text-white">Total: ${total.toFixed(2)}</p>
-            <div className="mt-4 flex space-x-4">
-              <button
+          <div className="mt-8 text-center">
+            <p className="text-xl font-bold mb-4 dark:text-white">Total: ${total.toFixed(2)}</p>
+            <div className="flex justify-center gap-4">
+              <Button
+                variant="outline"
                 onClick={clearCart}
-                className="bg-white hover:bg-gray-100 text-black border border-black font-bold py-2 px-4 rounded transition-colors duration-300 dark:bg-gray-800 dark:text-white dark:border-white dark:hover:bg-gray-700"
               >
                 Clear Cart
-              </button>
-              <Link href="/checkout" className="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded transition-colors duration-300 dark:bg-white dark:text-black dark:hover:bg-gray-200">
-                Proceed to Checkout
-              </Link>
+              </Button>
+              <Button asChild>
+                <Link href="/checkout">
+                  Proceed to Checkout
+                </Link>
+              </Button>
             </div>
           </div>
         </>

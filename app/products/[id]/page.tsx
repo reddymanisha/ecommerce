@@ -92,7 +92,7 @@ export default function ProductDetail() {
               className={`font-bold py-2 px-4 rounded ${
                 isInCart(product.id)
                   ? 'bg-red-500 hover:bg-red-600 text-white'
-                  : 'bg-blue-500 hover:bg-blue-600 text-white'
+                  : 'bg-purple-500 hover:bg-purple-500 text-white'
               }`}
             >
               {isInCart(product.id) ? 'Remove from Cart' : 'Add to Cart'}

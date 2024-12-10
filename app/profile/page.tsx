@@ -54,11 +54,11 @@ export default function ProfilePage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-2xl mx-auto">
-        <h1 className="text-3xl font-bold mb-6 text-center dark:text-white">Your Profile</h1>
+        <h1 className="text-3xl font-bold mb-6 text-center dark:text-white">My Profile</h1>
         <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="flex items-center space-x-4">
-              <User className="w-6 h-6 text-gray-400 dark:text-gray-300" />
+              <User className="w-6 h-8 text-gray-400 dark:text-gray-300" />
               <div className="flex-grow">
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
                 <input
@@ -73,7 +73,7 @@ export default function ProfilePage() {
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <Mail className="w-6 h-6 text-gray-400 dark:text-gray-300" />
+              <Mail className="w-6 h-8 text-gray-400 dark:text-gray-300" />
               <div className="flex-grow">
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
                 <input
@@ -88,7 +88,7 @@ export default function ProfilePage() {
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <MapPin className="w-6 h-6 text-gray-400 dark:text-gray-300" />
+              <MapPin className="w-6 h-8 text-gray-400 dark:text-gray-300" />
               <div className="flex-grow">
                 <label htmlFor="address" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Address</label>
                 <input
@@ -102,7 +102,7 @@ export default function ProfilePage() {
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <Phone className="w-6 h-6 text-gray-400 dark:text-gray-300" />
+              <Phone className="w-6 h-8 text-gray-400 dark:text-gray-300" />
               <div className="flex-grow">
                 <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Phone</label>
                 <input
@@ -118,7 +118,7 @@ export default function ProfilePage() {
             <div className="flex justify-end">
               <button
                 type="submit"
-                className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors duration-300 dark:bg-indigo-500 dark:hover:bg-indigo-600"
+                className="px-4 py-2 bg-purple-500 text-white rounded-md hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-colors duration-300 dark:bg-purple-500 dark:hover:bg-purple-500"
               >
                 Update Profile
               </button>

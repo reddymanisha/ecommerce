@@ -6,6 +6,7 @@ import { useCart } from '@/contexts/CartContext'
 import { useWishlist } from '@/contexts/WishlistContext'
 import { Product } from '@/types/product'
 import { Heart } from 'lucide-react'
+import{ Button }from '@/components/ui/button'
 
 export default function ProductCard({ product }: { product: Product }) {
   const { addToCart, removeFromCart, isInCart } = useCart()
@@ -15,8 +16,7 @@ export default function ProductCard({ product }: { product: Product }) {
     if (isInCart(product.id)) {
       removeFromCart(product.id)
     } else {
-      // Adjusted to pass the correct arguments to addToCart
-      addToCart(product, 1) // Assuming quantity is 1 by default
+      addToCart(product, 1) // Add a quantity of 1
     }
   }
 
@@ -29,18 +29,18 @@ export default function ProductCard({ product }: { product: Product }) {
   }
 
   return (
-    <div className="border rounded-lg p-4 flex flex-col dark:border-gray-700 dark:bg-gray-800">
+    <div className="border rounded-xl p-4 flex flex-col transition-colors duration-200 hover:border-primary dark:border-gray-800 dark:bg-gray-900/50 dark:hover:border-gray-700">
       <Link href={`/products/${product.id}`}>
-        <div className="relative w-full h-48 mb-4">
+        <div className="relative w-full h-48 mb-4 rounded-lg overflow-hidden">
           <Image 
             src={product.image} 
             alt={product.name} 
             layout="fill"
             objectFit="cover"
-            className="rounded-t-lg"
+            className="transition-transform duration-300 hover:scale-105"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
-              target.src = '/placeholder.svg'; // Fallback to placeholder if image fails to load
+              target.src = '/placeholder.svg';
             }}
           />
         </div>
@@ -48,29 +48,27 @@ export default function ProductCard({ product }: { product: Product }) {
       </Link>
       <p className="text-gray-600 mb-2 dark:text-gray-300">${product.price.toFixed(2)}</p>
       <p className="text-gray-500 mb-4 capitalize dark:text-gray-400">{product.gender}'s {product.type}</p>
-      <div className="mt-auto flex justify-between">
-        <button
+      <div className="mt-auto flex justify-between gap-2">
+        <Button
           onClick={handleCartAction}
-          className={`font-bold py-2 px-4 rounded transition-colors duration-300 ${
-            isInCart(product.id)
-              ? 'bg-black hover:bg-red-600 text-white'
-              : 'bg-indigo-600 hover:bg-indigo-700 text-white dark:bg-indigo-500 dark:hover:bg-indigo-600'
-          }`}
+          variant={isInCart(product.id) ? "destructive" : "default"}
+          className="flex-1 rounded-full"
         >
           {isInCart(product.id) ? 'Remove from Cart' : 'Add to Cart'}
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={handleWishlistAction}
-          className={`font-bold p-2 rounded transition-colors duration-300 ${
-            isInWishlist(product.id)
-              ? 'bg-red-600 hover:bg-red-600 text-white'
-              : 'bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white'
-          }`}
-          aria-label={isInWishlist(product.id) ? 'Remove from Wishlist' : 'Add to Wishlist'}
+          variant="outline"
+          size="icon"
+          className="rounded-full"
         >
-          <Heart className={`w-6 h-6 ${isInWishlist(product.id) ? 'fill-current' : ''}`} />
-        </button>
+          <Heart className={`w-4 h-4 ${isInWishlist(product.id) ? 'fill-current text-red-500' : ''}`} />
+          <span className="sr-only">
+            {isInWishlist(product.id) ? 'Remove from Wishlist' : 'Add to Wishlist'}
+          </span>
+        </Button>
       </div>
     </div>
   )
 }
+

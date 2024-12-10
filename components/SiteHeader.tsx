@@ -51,10 +51,7 @@ export default function SiteHeader() {
                 <li><button onClick={logout} className="hover:text-indigo-200 transition-colors duration-300">Logout</button></li>
               </>
             ) : (
-              <>
-                <li><Link href="/signin" className="hover:text-indigo-200 transition-colors duration-300">Sign In</Link></li>
-                <li><Link href="/signup" className="hover:text-indigo-200 transition-colors duration-300">Sign Up</Link></li>
-              </>
+              <li><Link href="/auth/signup" className="hover:text-indigo-200 transition-colors duration-300">Sign Up</Link></li>
             )}
             <li>
               <button onClick={toggleTheme} className="p-2 rounded-full hover:bg-indigo-700 dark:hover:bg-gray-700 transition-colors duration-300">

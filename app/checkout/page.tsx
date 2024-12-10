@@ -234,7 +234,7 @@ export default function Checkout() {
                 <p className="text-gray-600">You will be redirected to PayPal to complete your payment.</p>
               </div>
             )}
-            <button type="submit" className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+            <button type="submit" className="bg-purple-500 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded">
               Place Order
             </button>
           </form>

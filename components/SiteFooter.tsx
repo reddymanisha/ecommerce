@@ -1,6 +1,6 @@
 export default function SiteFooter() {
   return (
-    <footer className="bg-indigo-900 text-white py-8 dark:bg-gray-900">
+    <footer className="bg-indigo-900 text-white py-8 dark:bg-gray-900 dark:border-t dark:border-gray-800">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
@@ -20,11 +20,11 @@ export default function SiteFooter() {
             <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
             <p className="text-indigo-200 dark:text-gray-300">Email: info@example.com</p>
             <p className="text-indigo-200 dark:text-gray-300">Phone: (123) 456-7890</p>
-            <p className="text-indigo-200 dark:text-gray-300">Address: 123 E-commerce St, City, Country</p>
+            <p className="text-indigo-200 dark:text-gray-300">Address: 123 VibeValthu St, City, Country</p>
           </div>
         </div>
         <div className="mt-8 text-center text-indigo-200 dark:text-gray-300">
-          <p>&copy; 2023 VibeValthu. All rights reserved.</p>
+          <p>&copy; 2023 E-commerce Store. All rights reserved.</p>
         </div>
       </div>
     </footer>
